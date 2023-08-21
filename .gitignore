@@ -1,0 +1,4 @@
+.idea/
+eks/.terraform*
+eks/.terraform/
+eks/terraform.tfstate*
