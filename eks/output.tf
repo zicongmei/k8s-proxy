@@ -1,3 +1,8 @@
+output "resource_prefix" {
+  description = "resource prefix"
+  value = local.name
+}
+
 output "public_ip" {
   description = "Public ip"
   value       = aws_instance.public.public_ip
