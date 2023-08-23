@@ -31,3 +31,11 @@ output "ssh_nodepool" {
 output "get_kubeconfig" {
   value = "aws eks --region ${local.region} update-kubeconfig --name ${aws_eks_cluster.eks.name}"
 }
+
+output "get_issuerURL" {
+  value = aws_eks_cluster.eks.identity[0].oidc[0].issuer
+}
+
+output "eks_name" {
+  value = aws_eks_cluster.eks.name
+}
