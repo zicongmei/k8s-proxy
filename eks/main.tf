@@ -1,6 +1,6 @@
 
 locals {
-  name   = join("-", [basename(pathexpand("~")), "proxy-2"])
+  name   = join("-", [basename(pathexpand("~")), "proxy-3"])
   region = "us-west-2"
 
   k8s_version = "1.26"
