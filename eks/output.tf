@@ -1,6 +1,6 @@
 output "resource_prefix" {
   description = "resource prefix"
-  value = local.name
+  value       = local.name
 }
 
 output "public_ip" {

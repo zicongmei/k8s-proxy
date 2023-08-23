@@ -85,7 +85,7 @@ resource "aws_launch_template" "proxy-template" {
       volume_size = 20
     }
   }
-  key_name   = aws_key_pair.this.key_name
+  key_name = aws_key_pair.this.key_name
   tag_specifications {
     resource_type = "instance"
 

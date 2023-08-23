@@ -1,6 +1,6 @@
 
 locals {
-  name   = "zicong-proxy"
+  name   = join("-", [basename(pathexpand("~")), "proxy"])
   region = "us-west-2"
 
   k8s_version = "1.26"

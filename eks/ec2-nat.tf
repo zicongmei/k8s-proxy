@@ -3,14 +3,14 @@ resource "aws_security_group" "ec2_nat" {
   description = "security group for ec2_nat EC2 "
   vpc_id      = aws_vpc.this.id
 
-#  ingress {
-#  #  Allow NAT. No proxy is needed
-#    description = "open to all NAT"
-#    from_port   = 0
-#    to_port     = 0
-#    protocol    = "-1"
-#    cidr_blocks = [local.cidr_block]
-#  }
+  #  ingress {
+  #  #  Allow NAT. No proxy is needed
+  #    description = "open to all NAT"
+  #    from_port   = 0
+  #    to_port     = 0
+  #    protocol    = "-1"
+  #    cidr_blocks = [local.cidr_block]
+  #  }
 
   egress {
     from_port        = 0

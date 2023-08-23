@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "AmazonEKS_CNI_Policy" {
 resource "aws_eks_cluster" "eks" {
   name     = "${local.name}-eks"
   role_arn = aws_iam_role.EKSClusterRole.arn
-  version = local.k8s_version
+  version  = local.k8s_version
   vpc_config {
     subnet_ids = [aws_subnet.private[0].id, aws_subnet.private[1].id]
   }
@@ -68,11 +68,11 @@ resource "aws_eks_node_group" "node-ec2" {
   node_group_name = "${local.name}-eks-nodegroup"
   node_role_arn   = aws_iam_role.NodeGroupRole.arn
   subnet_ids      = [aws_subnet.private[0].id, aws_subnet.private[1].id]
-  version = local.k8s_version
+  version         = local.k8s_version
 
   launch_template {
     version = "$Latest"
-    id = aws_launch_template.proxy-template.id
+    id      = aws_launch_template.proxy-template.id
   }
 
   scaling_config {
