@@ -3,29 +3,9 @@ output "resource_prefix" {
   value       = local.name
 }
 
-output "public_ip" {
-  description = "Public ip"
-  value       = aws_instance.public.public_ip
-}
-
 output "proxy_config" {
   description = "Proxy config"
   value       = "http://${var.username}:${var.password}@${aws_instance.public.private_ip}:3128"
-}
-
-output "public_internal_ip" {
-  description = "Internal ip of public instance"
-  value       = aws_instance.public.private_ip
-}
-
-output "private_ip" {
-  description = "Private ip"
-  value       = aws_instance.private.private_ip
-}
-
-output "nat_ip" {
-  description = "NAT ip"
-  value       = aws_instance.ec2_nat.private_ip
 }
 
 output "ssh_public" {
@@ -46,4 +26,8 @@ output "ssh_nat" {
 output "ssh_nodepool" {
   description = "ssh to private instance"
   value       = "ssh -o'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' -J ubuntu@${aws_instance.public.public_ip} ec2-user@${data.aws_instance.nodepool.private_ip}"
+}
+
+output "get_kubeconfig" {
+  value = "aws eks --region ${local.region} update-kubeconfig --name ${aws_eks_cluster.eks.name}"
 }
