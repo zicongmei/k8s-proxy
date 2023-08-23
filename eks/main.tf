@@ -1,6 +1,6 @@
 
 locals {
-  name   = "test-nat"
+  name   = "zicong-proxy"
   region = "us-west-2"
 
   k8s_version = "1.26"

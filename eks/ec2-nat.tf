@@ -4,6 +4,7 @@ resource "aws_security_group" "ec2_nat" {
   vpc_id      = aws_vpc.this.id
 
 #  ingress {
+#  #  Allow NAT. No proxy is needed
 #    description = "open to all NAT"
 #    from_port   = 0
 #    to_port     = 0

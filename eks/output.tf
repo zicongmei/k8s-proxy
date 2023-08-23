@@ -10,7 +10,7 @@ output "public_ip" {
 
 output "proxy_config" {
   description = "Proxy config"
-  value       = "http://${var.username}:${var.password}@${aws_instance.public.public_ip}:3128"
+  value       = "http://${var.username}:${var.password}@${aws_instance.public.private_ip}:3128"
 }
 
 output "public_internal_ip" {
