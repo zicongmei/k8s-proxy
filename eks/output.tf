@@ -8,6 +8,11 @@ output "proxy_config" {
   value       = "http://${var.username}:${var.password}@${aws_instance.public.private_ip}:3128"
 }
 
+output "no_proxy" {
+  description = "No-Proxy config"
+  value       = kubernetes_config_map.proxy.data.NO_PROXY
+}
+
 output "ssh_public" {
   description = "ssh to public instance"
   value       = "ssh -o'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' ubuntu@${aws_instance.public.public_ip}"
@@ -25,7 +30,7 @@ output "ssh_nat" {
 
 output "ssh_nodepool" {
   description = "ssh to private instance"
-  value       = "ssh -o'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' -J ubuntu@${aws_instance.public.public_ip} ec2-user@${data.aws_instance.nodepool.private_ip}"
+  value       = "ssh -o'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' -J ubuntu@${aws_instance.public.public_ip} ec2-user@${data.aws_instances.nodepool.private_ips[0]}"
 }
 
 output "get_kubeconfig" {
@@ -38,12 +43,4 @@ output "get_issuerURL" {
 
 output "eks_name" {
   value = aws_eks_cluster.eks.name
-}
-
-output "cidr" {
-  value = aws_vpc.this.cidr_block
-}
-
-output "region" {
-  value = local.region
 }

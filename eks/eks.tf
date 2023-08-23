@@ -89,8 +89,11 @@ resource "aws_eks_node_group" "node-ec2" {
   ]
 }
 
-data "aws_instance" "nodepool" {
+data "aws_instances" "nodepool" {
   instance_tags = {
     Name = "${local.name}-eks-lt"
   }
+  depends_on = [
+    aws_eks_node_group.node-ec2,
+  ]
 }
