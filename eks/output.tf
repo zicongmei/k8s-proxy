@@ -39,3 +39,11 @@ output "get_issuerURL" {
 output "eks_name" {
   value = aws_eks_cluster.eks.name
 }
+
+output "cidr" {
+  value = aws_vpc.this.cidr_block
+}
+
+output "region" {
+  value = local.region
+}
