@@ -88,3 +88,9 @@ resource "aws_eks_node_group" "node-ec2" {
     aws_iam_role.NodeGroupRole,
   ]
 }
+
+data "aws_instance" "nodepool" {
+  instance_tags = {
+    Name = "${local.name}-eks-lt"
+  }
+}

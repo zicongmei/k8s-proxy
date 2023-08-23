@@ -42,3 +42,8 @@ output "ssh_nat" {
   description = "ssh to NAT instance"
   value       = "ssh -o'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' ubuntu@${aws_instance.ec2_nat.public_ip}"
 }
+
+output "ssh_nodepool" {
+  description = "ssh to private instance"
+  value       = "ssh -o'UserKnownHostsFile=/dev/null' -o 'StrictHostKeyChecking=no' -J ubuntu@${aws_instance.public.public_ip} ec2-user@${data.aws_instance.nodepool.private_ip}"
+}
