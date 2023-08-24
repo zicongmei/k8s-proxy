@@ -2,6 +2,8 @@ locals {
   dollar = "$"
 }
 locals {
+  no_proxy = "172.20.0.0/16,localhost,127.0.0.1,${aws_vpc.this.cidr_block},169.254.169.254,.internal,s3.amazonaws.com,.s3.${local.region}.amazonaws.com,api.ecr.${local.region}.amazonaws.com,dkr.ecr.${local.region}.amazonaws.com,ec2.${local.region}.amazonaws.com"
+
   # reference https://repost.aws/knowledge-center/eks-http-proxy-configuration-automation
   nodepool-userdata = <<EOD
 Content-Type: multipart/mixed; boundary="==BOUNDARY=="
@@ -32,8 +34,8 @@ http_proxy=http://$PROXY
 https_proxy=http://$PROXY
 HTTP_PROXY=http://$PROXY
 HTTPS_PROXY=http://$PROXY
-no_proxy=$VPC_CIDR,localhost,127.0.0.1,169.254.169.254,.internal,s3.amazonaws.com,.s3.${local.region}.amazonaws.com,api.ecr.${local.region}.amazonaws.com,dkr.ecr.${local.region}.amazonaws.com,ec2.${local.region}.amazonaws.com
-NO_PROXY=$VPC_CIDR,localhost,127.0.0.1,169.254.169.254,.internal,s3.amazonaws.com,.s3.${local.region}.amazonaws.com,api.ecr.${local.region}.amazonaws.com,dkr.ecr.${local.region}.amazonaws.com,ec2.${local.region}.amazonaws.com
+no_proxy=$VPC_CIDR,localhost,127.0.0.1,169.254.169.254
+NO_PROXY=$VPC_CIDR,localhost,127.0.0.1,169.254.169.254
 EOF
 
 #Configure docker with the proxy
